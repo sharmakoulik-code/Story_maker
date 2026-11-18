@@ -1,0 +1,7 @@
+{
+  "name": "koma-studio-browser-tests",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test smoke.test.mjs" },
+  "devDependencies": { "playwright-core": "1.65.1" }
+}

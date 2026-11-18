@@ -1,0 +1,117 @@
+.production-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+.production-nav a { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--stroke); border-radius: 8px; padding: 6px 8px; color: var(--muted); min-height: 37px; background: var(--panel); font-size: 12px; }
+.production-nav a:hover { border-color: #4f7068; color: #e4f4eb; }
+.production-nav a[aria-current="page"] { background: #1b302b; color: #ccf3e0; border-color: #365e50; }
+.step-num { font-size: 9.5px; font-variant-numeric: tabular-nums; font-weight: 780; color: #a5baae; letter-spacing: .04em; }
+.step-arrow { color: var(--dim); }
+.plan-primary-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.plan-start { position: relative; isolation: isolate; overflow: hidden; padding: clamp(16px, 3.6vw, 42px); border-color: #344d46; background: #162326; }
+.plan-start-copy { max-width: 500px; }
+.plan-start h2 { font-size: clamp(29px, 4vw, 48px); line-height: 1.08; letter-spacing: -.045em; font-family: "Fraunces Variable", Georgia, serif; color: #eef4eb; margin: 9px 0; }
+.plan-start p { margin-bottom: 15px; color: #c6d9d4; font-size: 14px; line-height: 1.55; }
+.plan-start small { color: #abc1bb; display: block; font-size: 11px; margin-top: 13px; }
+.plan-start-art { position: absolute; inset: 0 0 0 27%; z-index: -1; }
+.plan-start-art img { width: 100%; height: 100%; object-fit: cover; object-position: right center; }
+.plan-start-art::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, #162326 0%, #162326cf 31%, #16232635 78%); }
+.plan-notice { border: 1px solid #4c4639; background: #29251f; color: #efd6b4; padding: 10px 12px; margin: 0 0 12px; border-radius: 9px; font-size: 12px; }
+.plan-notice p { color: #d5c5ac; margin-top: 3px; }
+.plan-notice a { text-decoration: underline; }
+.plan-stale { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.plan-stale .button { min-height: 32px; }
+.timing-board { padding: 14px 16px 12px; background: radial-gradient(ellipse at 88% 0%, #23373b 0%, transparent 61%), #171f28; border: 1px solid #35484e; border-radius: var(--radius); }
+.timing-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.timing-top .eyebrow { font-size: 9px; letter-spacing: .15em; color: #a3bbbf; }
+.timing-top h2 { margin-top: 4px; font-size: 20px; font-weight: 740; letter-spacing: -.033em; }
+.timing-stats { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 12px; padding: 10px 0 11px; }
+.timing-stats > div { border-left: 1px solid #3b5157; padding-left: 9px; }
+.timing-stats span { display: block; font-size: 10px; color: #a8bec2; }
+.timing-stats strong { display: block; font-variant-numeric: tabular-nums; font-size: 22px; letter-spacing: -.03em; line-height: 1.1; }
+.timing-stats strong small { font-size: 14px; font-weight: 600; color: #a6bebf; white-space: nowrap; }
+.timing-strip { display: flex; gap: 4px; overflow: auto; padding: 3px; border: 1px solid #344950; border-radius: 8px; background: #141b23; }
+.timing-strip button { min-width: 38px; flex-basis: 0; border: 1px solid #4a546b; background: #2c354b; padding: 4px 6px; border-radius: 4px; color: #d7e0f4; font-size: 10px; display: flex; align-items: center; justify-content: space-between; gap: 4px; outline-offset: -2px; }
+.timing-strip button:nth-child(2n) { background: #3a3550; border-color: #524766; color: #e2d8f5; }
+.timing-strip button[aria-pressed="true"] { color: #d4ffed; border-color: #6a9d88; background: #30524a; }
+.timing-strip button span { font-weight: 750; }
+.timing-strip button small { color: inherit; opacity: .86; }
+.timing-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 3px 10px; color: #a4b9c3; font-size: 10.5px; margin-top: 6px; }
+.timing-notices { background: #252931; border: 1px solid #3b424c; border-radius: 7px; color: #d3dce8; font-size: 11.5px; line-height: 1.52; margin-top: 8px; padding: 7px 10px; }
+ul.timing-notices { list-style: disc inside; }
+.timing-notices.issues { background: #3a2830; border-color: #775160; color: #ffd2d9; }
+.timing-details { margin-top: 8px; }
+.plan-toolbar { margin: 15px 0 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.plan-toolbar .filter-group button { text-transform: none; }
+.plan-toolbar .busy { margin: 0; padding: 4px 8px; min-height: 32px; }
+.scene-plan-grid { display: grid; grid-template-columns: minmax(170px, .44fr) minmax(0, 1.56fr); gap: 12px; align-items: start; }
+.scene-list-panel { padding: 12px; }
+.bible-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 9px; }
+.bible-heading h3 { display: flex; align-items: center; gap: 6px; color: var(--text); font-weight: 730; font-size: 14px; }
+.bible-heading h3 > svg { color: var(--mint); }
+.bible-heading h3 span { background: #252e39; border: 1px solid #344252; border-radius: 5px; color: #c7d4e1; padding: 0 4px; font-size: 10px; font-variant-numeric: tabular-nums; }
+.bible-heading p { color: var(--muted); font-size: 11px; margin-top: 2px; }
+.icon-only { padding-inline: 7px; }
+.scene-list { display: grid; gap: 5px; min-width: 0; }
+.scene-pick { min-width: 0; display: flex; align-items: center; gap: 7px; text-align: start; width: 100%; padding: 6px 7px; border: 1px solid #303947; border-radius: 8px; background: #151a23; }
+.scene-pick[aria-pressed="true"] { background: #1c302d; border-color: #3d6459; }
+.scene-pick:hover { border-color: #6e918a; }
+.scene-number { background: #282f40; border: 1px solid #414a60; color: #d1d9f2; border-radius: 5px; padding: 4px 5px; font-size: 10px; line-height: 1.2; font-weight: 760; }
+.scene-pick[aria-pressed="true"] .scene-number { background: #34574e; border-color: #548375; color: #d4fae8; }
+.scene-pick-label { min-width: 0; flex: 1; }
+.scene-pick-label > * { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.scene-pick-label strong { font-size: 11.5px; font-weight: 710; }
+.scene-pick-label small { color: #a3b2be; font-size: 10px; }
+.timing-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 10px; background: #edb289; }
+.scene-editor-heading { display: flex; justify-content: space-between; align-items: start; gap: 7px; }
+.scene-editor-heading .panel-heading { margin-bottom: 8px; }
+.scene-editor-heading .eyebrow { margin: 0 0 3px; font-size: 9px; }
+.scene-editor-heading h2 { overflow-wrap: anywhere; }
+.scene-edit-tools { display: flex; align-items: center; gap: 4px; }
+.scene-measurements { display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap; margin-bottom: 9px; color: var(--dim); }
+.scene-measurements small { font-size: 10.5px; }
+.plan-fields { min-width: 0; display: grid; gap: 10px; }
+.scene-details { min-width: 0; border: 1px solid var(--stroke); border-radius: 7px; background: #121720; }
+.scene-details summary { padding: 7px 9px; font-size: 12px; font-weight: 700; cursor: pointer; color: #cbdedb; }
+.scene-details summary:hover { color: #d4f6e7; }
+.details-body { padding: 3px 9px 9px; min-width: 0; }
+.source-quote p { font-size: 12px; line-height: 1.55; color: #b9c8d2; overflow-wrap: anywhere; }
+.plan-fields .field textarea { line-height: 1.48; }
+.field-top label svg { display: inline-block; vertical-align: -.2em; margin-right: 3px; }
+.continuity-checks { padding: 7px 8px; border: 1px solid #2b3745; border-radius: 7px; }
+.field-label { font-size: 12px; font-weight: 700; }
+.check-field { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: #bfcfd6; }
+.check-field input { accent-color: var(--mint-strong); }
+.cast-row { display: grid; grid-template-columns: minmax(110px, 1fr) minmax(0, 1fr); gap: 7px; align-items: center; }
+.prop-checks { display: flex; flex-wrap: wrap; gap: 8px 12px; }
+.dialogue-line, .bible-entry { border: 1px solid #35404d; border-radius: 8px; background: #1a202a; padding: 8px 9px; }
+.dialogue-line { display: grid; gap: 6px; }
+.dialogue-head { display: flex; gap: 6px; align-items: end; }
+.dialogue-head label { flex: 1; }
+.inline-empty { color: var(--muted); font-size: 11.5px; margin-block: 3px; }
+.bible-section { margin-top: 17px; padding-top: 12px; border-top: 1px solid var(--stroke); }
+.bible-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; align-items: start; }
+.entry-header { display: flex; gap: 6px; align-items: center; min-height: 22px; margin-bottom: 7px; }
+.entry-header h4 { min-width: 0; flex: 1; color: #e6ecef; font-weight: 730; font-size: 13px; overflow-wrap: anywhere; }
+.plan-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 9px; padding-top: 11px; margin-top: 14px; border-top: 1px solid var(--stroke); }
+.plan-footer p { font-size: 11px; color: var(--muted); margin-top: 4px; }
+@media (max-width: 700px) {
+  .scene-plan-grid { grid-template-columns: minmax(0, 1fr); }
+  .scene-list-panel .scene-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bible-grid { grid-template-columns: minmax(0, 1fr); }
+  .plan-start-art { inset: 0; opacity: .55; }
+}
+@media (max-width: 450px) {
+  .production-nav { gap: 4px; }
+  .production-nav a { gap: 5px; font-size: 10.5px; }
+  .production-nav a > svg { width: 12px; }
+  .production-nav a .badge { font-size: 9px; }
+  .timing-stats strong { font-size: 18px; }
+  .timing-stats strong small { font-size: 12px; }
+  .plan-toolbar .filter-group button { padding-inline: 5px; font-size: 11px; gap: 3px; }
+  .plot-fields { grid-template-columns: minmax(0, 1fr); }
+}
+.plan-history { margin-top: 12px; }
+.plan-history summary svg { display: inline-block; vertical-align: -.2em; margin-right: 3px; }
+.plan-versions { margin-top: 8px; }
+.plan-versions li { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 7px; padding: 7px 0; border-top: 1px solid var(--stroke); }
+.version-label { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; font-size: 12px; }
+.version-label small, .plan-versions li small { color: var(--muted); font-size: 11px; }
+.version-pagination { margin-top: 5px; }
