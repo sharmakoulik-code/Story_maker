@@ -4,9 +4,11 @@ import '@fontsource-variable/fraunces/wght-italic.css'
 import './studio.css'
 import './planning.css'
 import './visuals.css'
+import './motion.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { AnimationLibrary, AnimationPage } from './AnimationStudio'
 import { CharactersPage } from './Characters'
 import { StoryboardPage } from './Storyboard'
 import { Dashboard } from './Dashboard'
@@ -23,6 +25,8 @@ const router = createBrowserRouter([{
     { path: 'new', element: <NewStory /> },
     { path: 'projects', element: <ProjectLibrary /> },
     { path: 'characters', element: <CharactersPage /> },
+    { path: 'animation', element: <AnimationLibrary /> },
+    { path: 'animation/:id', element: <AnimationPage /> },
     { path: 'projects/:id/storyboard', element: <StoryboardPage /> },
     { path: 'projects/:id/plan', element: <StoryPlanPage /> },
     { path: 'projects/:id', element: <StoryProject /> },

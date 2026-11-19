@@ -286,7 +286,7 @@ class VisualTests(unittest.TestCase):
             before = app.get(path).json()
         workspace = Workspace(self.root)
         with workspace.connect() as db:
-            for table in ("board_shots", "studio_images", "cast_library"):
+            for table in ("motion_jobs", "motion_assets", "motion_sequences", "board_shots", "studio_images", "cast_library"):
                 db.execute(f"DROP TABLE {table}")
             db.execute("PRAGMA user_version = 3")
         with self.client() as app:

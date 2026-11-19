@@ -46,6 +46,7 @@ const links = [
   { to: '/new', icon: SquarePen, label: 'New story' },
   { to: '/projects', icon: FolderOpen, label: 'My projects' },
   { to: '/characters', icon: UsersRound, label: 'Character Library' },
+  { to: '/animation', icon: Clapperboard, label: 'Animation Studio' },
 ]
 
 export function StudioShell() {
@@ -55,7 +56,7 @@ export function StudioShell() {
   const isProject = library && location.pathname !== '/projects' && location.pathname !== '/projects/'
   const isPlan = isProject && /\/plan\/?$/.test(location.pathname)
   const projectCrumb = isPlan ? 'Story plan' : /\/storyboard\/?$/.test(location.pathname) ? 'Storyboard' : 'Story draft'
-  const current = location.pathname === '/' ? 'Overview' : location.pathname.startsWith('/new') ? 'New story' : library ? 'My projects' : location.pathname.startsWith('/characters') ? 'Character Library' : location.pathname.startsWith('/settings') ? 'System & models' : 'Not found'
+  const current = location.pathname === '/' ? 'Overview' : location.pathname.startsWith('/new') ? 'New story' : library ? 'My projects' : location.pathname.startsWith('/characters') ? 'Character Library' : location.pathname.startsWith('/animation') ? 'Animation Studio' : location.pathname.startsWith('/settings') ? 'System & models' : 'Not found'
   const preview = info?.mode === 'preview'
   useEffect(() => {
     document.title = `${isProject ? projectCrumb : current} · Koma Studio`
@@ -75,7 +76,7 @@ export function StudioShell() {
           </nav>
           <div className="sidebar-footer">
             <div className="sidebar-mode"><span className={`status-dot ${preview ? 'dot-amber' : info ? 'dot-mint' : ''}`}/><div><strong>{preview ? 'Demo workspace' : info ? 'On this device' : 'Koma workspace'}</strong><small>{preview ? 'Use sample content only' : 'No cloud account required'}</small></div></div>
-            {info && <p className="edition"><Clapperboard size={13} aria-hidden="true"/> Visual development <span>v{info.version}</span></p>}
+            {info && <p className="edition"><Clapperboard size={13} aria-hidden="true"/> Motion & export <span>v{info.version}</span></p>}
           </div>
         </aside>
         <div className="stage min-w-0">

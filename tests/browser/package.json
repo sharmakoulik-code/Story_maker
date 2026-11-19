@@ -2,6 +2,6 @@
   "name": "koma-studio-browser-tests",
   "private": true,
   "type": "module",
-  "scripts": { "test": "node --test smoke.test.mjs" },
+  "scripts": { "test": "node --test --test-concurrency=1 smoke.test.mjs animation.test.mjs" },
   "devDependencies": { "playwright-core": "1.65.1" }
 }

@@ -7,12 +7,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
 
+from .motion.schema import SCHEMA as MOTION_SCHEMA
 from .plan_models import source_digest
 from .schemas import Draft, DraftProfile, Project, ProjectSummary, Settings
 from .visual_schema import VISUAL_SCHEMA
 
 
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
 
 PLAN_SUMMARY = """CASE WHEN plan.project_id IS NULL THEN 'not_started'
                          WHEN plan.stale = 1 THEN 'stale'
@@ -139,6 +140,9 @@ class Workspace:
                 """)
             if version < 4:
                 for statement in VISUAL_SCHEMA:
+                    db.execute(statement)
+            if version < 5:
+                for statement in MOTION_SCHEMA:
                     db.execute(statement)
             if version < SCHEMA_VERSION:
                 db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")

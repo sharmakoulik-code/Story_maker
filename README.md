@@ -1,6 +1,6 @@
 # Koma Studio
 
-A private, CPU-first workspace for making vertical anime story videos on your own Windows computer. **Phase 3 adds the Character Library and storyboard:** develop a timed scene plan, pin reusable character references, and review versioned local illustrations. The studio does not yet generate images, animate scenes, or export MP4s.
+A private, CPU-first workspace for making vertical anime story videos on your own Windows computer. Write a timed story plan, pin reusable character references, review local illustrations, then animate prepared layers in **Animation Studio** and render a portrait MP4. No model or cloud service is needed.
 
 ## Start on Windows
 
@@ -8,11 +8,11 @@ A private, CPU-first workspace for making vertical anime story videos on your ow
 2. Put this checkout in a writable folder on a local drive. Run **`setup.bat`** once while online. It creates a Python virtual environment and builds the React interface. It does not install FFmpeg, AI runtimes or model weights.
 3. Run **`start.bat`**. Leave its console window open while working. It opens [http://127.0.0.1:8765](http://127.0.0.1:8765/) when the studio is ready. Use `Ctrl+C` in the console to stop it.
 
-Updating from Phase 1 or 2? Stop the studio, back up your data folder, and rerun `setup.bat` to install the image-import dependencies and rebuild the UI. `start.bat` migrates the SQLite library in place without moving your projects.
+Updating an existing checkout? Stop the studio, back up your data folder, and rerun `setup.bat` to rebuild the UI and pick up dependencies. `start.bat` migrates the SQLite library in place without moving your projects.
 
 Only the one-time setup needs internet access. You can disconnect after setup and run `start.bat` as usual. Node and npm are build-time tools; the launcher does not run them. There is no account, API key, remote inference, upload endpoint to a third party, or telemetry exporter. The interface, illustrations and fonts are served locally. Local runtime checks only ask Ollama/ComfyUI on loopback for status, not for generation.
 
-In the development demo, select **Open sample storyboard** on the overview to see The Blue Flower. The demo uses a temporary sandbox, not your Windows library. Use sample content only; any files you import into it are copied into that sandbox and the library resets on restart.
+In the development demo, select **Open sample storyboard** on the overview to see the Phase 3 example. For the animated short, use **Animation Studio → Open Blue Flower**. The demo uses a temporary sandbox, not your Windows library. Use sample content only; any files you import into it are copied into that sandbox and the library resets on restart.
 
 ## Develop a first story
 
@@ -38,17 +38,27 @@ The planner uses local rules to select whole passages from the story. A short ta
 
 You can try the whole workflow with the [blue-flower story](tests/fixtures/blue_flower.txt) and the [original CC0 demo art](backend/demo_art/README.md). The Windows app starts with an empty library. You do not need a GPU, FFmpeg, internet, or an image engine to import stills and review them. No character-sheet generation or automatic image regeneration is available yet.
 
+## Animate and export Blue Flower
+
+1. Open **Animation Studio → Open Blue Flower**. On a new library, this installs the original layered sample once. Press **Play** beneath **Camera preview**; the film cuts from a wide forest path to Mina’s reaction, then to the flower insert. The sample runs 9.8 seconds.
+2. Select **Mina notices the light** in **Shots**. The camera badge reads **Locked camera**. Play from the start of that shot, or use **Jump to blink** and the arrow-step controls. At output frames **96**, **126**, and **164** you can see eyes open, eyes shut, then the raised hand. The global scrubber and clickable shot/keyframe tracks are in the timeline below the editor. Frame numbering starts at zero.
+3. For your own work, create a **New animation** and **Import artwork**. Use PNG or WebP with transparent edges for separated parts. Layers listed at the top draw in front. Use **Layer setup & ordering** to set the parent, pivot and order. At source frame 0 set the starting pose; later edits set a keyframe at the playhead. The **Camera** tab supports static framing, pan/zoom keys, and following a layer. In **Shot**, set the source duration and motion speed. **Preview speed** only affects playback, not your MP4. Save the timeline to keep your changes.
+4. After installing the [local media tools](#ffmpeg-setup-for-export), choose **Export MP4 → Render MP4**. The app exports the saved revision, at **1080 × 1920, 30 FPS, H.264 MP4**, without audio. Once complete, use **Watch export**, **Download MP4**, or open the displayed local file path. The default folder is `%LOCALAPPDATA%\AnimeStudio\outputs`.
+
+Animation Studio is a separate timeline library. It does not automatically convert a story plan or storyboard into a rig. Import prepared backgrounds, faces, hands, and other parts as needed. The built-in sample is editable; use a separate timeline to practice if you want to preserve the original verification example. See the [Milestone 1 verification report](docs/milestone-1-verification.md) for the engine limits, native Windows playback check, evidence, and test commands.
+
 ## Data folders and backups
 
 Windows defaults to `%LOCALAPPDATA%\AnimeStudio`, outside this Git checkout:
 
 ```text
 AnimeStudio/
-├── database/studio.sqlite3  # drafts, plans, asset metadata, approvals, and paths
+├── database/studio.sqlite3  # drafts, plans, approvals, timelines, and export jobs
+├── animation/               # normalized artwork imported into Animation Studio
 ├── characters/              # versioned Character Library reference images
 ├── projects/                # per-project stills and thumbnails
 ├── models/                  # optional model files for later phases
-├── outputs/                 # reserved for later exports
+├── outputs/                 # finished animation MP4s
 └── logs/                    # reserved for later job logs
 ```
 
@@ -62,13 +72,14 @@ start.bat
 
 Use a non-synced local disk. To back up a library, stop the studio and copy the whole data folder plus any folders you configured outside it. Restore to the same locations if you want existing project media paths to remain valid. Changing the data root alone does not migrate a library. Keep the database and its media together when backing up; downloaded versions are not a full backup. Image versions are retained and take additional disk space.
 
-## Optional FFmpeg setup
+## FFmpeg setup for export
 
-The current release only **detects** FFmpeg and FFprobe. For later media work, use a trusted [Windows build listed by FFmpeg](https://ffmpeg.org/download.html#build-windows). Keep `ffmpeg.exe` and `ffprobe.exe` from the same build. Look for software H.264 (`libx264`), AAC and the libass subtitle filter.
+Use a trusted [Windows build listed by FFmpeg](https://ffmpeg.org/download.html#build-windows) that includes software H.264 (`libx264`). Keep `ffmpeg.exe` and `ffprobe.exe` from the same build. Editing and preview do not need these tools; the MP4 renderer needs both. You can disconnect after installing them.
 
 - Add the build’s `bin` folder to `PATH` and restart the studio, **or** enter full paths to both `.exe` files under **System & models → Workspace paths**.
 - Use **Refresh diagnostics**. “Detected” means the executable responded to a version probe; it does not mean a video was rendered.
-- See [optional local engines](docs/local-engines.md) for what is detected now and what remains unsupported.
+- **Auto** tries an available Intel QSV, NVIDIA NVENC, or AMD AMF H.264 encoder only after a local encode test. If none pass, or a hardware render fails, it uses CPU `libx264`. Choose **Software / libx264** to force CPU encoding. Compositing always runs on the CPU.
+- See [optional local engines](docs/local-engines.md) for future model and voice runtimes. These are not needed here.
 
 ## Troubleshooting
 
@@ -81,14 +92,16 @@ The current release only **detects** FFmpeg and FFprobe. For later media work, u
 | The plan will not approve | Save your changes, check the Pacing desk for scenes that exceed their allocation, and make sure the scene durations total the target. Shorten the script or use a longer target if Fit to target cannot fit it. |
 | A frame or reference says its file is unavailable | Keep managed media at the original path. Restore the missing copy from your backup, or choose another version or import a replacement. |
 | Visual review was reopened | Save and approve the current Story plan, then check only the frames marked Needs review or Direction changed. Pick the intended version before approving it again. |
-| Graphics memory is unknown | Graphics detection depends on the OS and drivers. Windows adapter-memory values are approximate and may be inaccurate for shared or large adapters. They do not enable acceleration in this release. |
+| Graphics memory is unknown | Windows adapter-memory values are approximate. The auto encoder tests the executable and driver rather than relying on the detected name or memory. No GPU is needed for CPU export. |
+| Render is disabled or fails | Save the timeline, add artwork to each shot, check both executable paths and the writable Outputs folder, and try Software encoding. If another studio is rendering, cancel or finish there first. Failed or cancelled jobs do not publish an MP4. |
 | A draft seems missing | Check the Archived filter and confirm the `DATA ROOT` in System & models. The demo uses a different, temporary library. |
 
 ## Source and testing
 
-- `backend/` — loopback launcher and API, SQLite migrations and project storage, offline planning and timing, versioned local still imports, bounded hardware probes.
+- `backend/` — loopback launcher and API, SQLite migrations and project storage, offline planning and timing, versioned local still imports, a layered animation compositor, and a bounded FFmpeg worker.
 - `frontend/` — TypeScript, React, Vite and Tailwind; original, decorative SVG illustrations and locally bundled DM Sans and Fraunces ([SIL OFL notices](frontend/public/licenses/)).
 - `tests/` — Python API, planner, image storage and diagnostics tests; optional Chromium workflows with a real local server restart.
+- [Milestone 1 verification report](docs/milestone-1-verification.md) — original sample, frame comparisons, local export, and Windows follow-up.
 - [Phase 3 verification report](docs/phase-3-verification.md) — visual workflow, image limits, restart checks and remaining work.
 - [Phase 2 verification report](docs/phase-2-verification.md) — blue-flower walkthrough results, timing, offline checks and outstanding media work.
 - [Phase 1 verification report](docs/phase-1-verification.md) — test commands, measured sandbox hardware, and what has not been verified on Windows.
