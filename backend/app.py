@@ -15,6 +15,9 @@ from .character_store import CharacterStore
 from .demo import seed_preview
 from .hardware import HardwareMonitor
 from .images import ImageStore
+from .motion.export import ExportService
+from .motion.routes import motion_routes
+from .motion.store import MotionStore
 from .plan_models import (MAX_REVISION, AdoptTarget, GeneratePlan, PlanApproval, PlanHistory,
                           PlanVersion, PlanView, RestoreVersion, SavePlan)
 from .plan_store import PlanStore
@@ -36,14 +39,21 @@ def create_app(data_dir: Path | None = None, *, preview: bool = False, frontend:
     images = ImageStore(workspace)
     characters = CharacterStore(workspace, images)
     storyboard = StoryboardStore(workspace, plans, images)
+    motion = MotionStore(workspace)
+    exports = ExportService(motion, preview=preview)
 
     @asynccontextmanager
     async def lifespan(_: FastAPI):
         workspace.initialize()
-        if preview:
-            seed_preview(workspace, plans, characters, storyboard)
-        await asyncio.to_thread(hardware.read, workspace.base, workspace.get_settings())
-        yield
+        try:
+            exports.recover()
+            if preview:
+                seed_preview(workspace, plans, characters, storyboard)
+                motion.create(sample=True)
+            await asyncio.to_thread(hardware.read, workspace.base, workspace.get_settings())
+            yield
+        finally:
+            await asyncio.to_thread(exports.close)
 
     app = FastAPI(
         title="Koma Studio", version=VERSION, lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None,
@@ -164,6 +174,7 @@ def create_app(data_dir: Path | None = None, *, preview: bool = False, frontend:
         return plans.restore(project_id, request.revision, request.version)
 
     app.include_router(visual_routes(images, characters, storyboard))
+    app.include_router(motion_routes(motion, exports))
 
     for folder in ("assets", "licenses"):
         if (frontend / folder).is_dir():

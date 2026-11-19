@@ -45,7 +45,7 @@ def write_image(image: Image.Image, path: Path, *, thumb: bool, lossless: bool =
         os.fsync(stream.fileno())
 
 
-def encode(source: BinaryIO, directory: Path) -> tuple[int, int, int]:
+def encode(source: BinaryIO, directory: Path, *, fit: tuple[int, int] | None = None) -> tuple[int, int, int]:
     source.seek(0, os.SEEK_END)
     if source.tell() > MAX_IMPORT_BYTES:
         raise WorkspaceError(413, "Import a PNG, JPEG, or WebP of 16 MiB or less.")
@@ -67,6 +67,8 @@ def encode(source: BinaryIO, directory: Path) -> tuple[int, int, int]:
     except (OSError, ValueError, SyntaxError, EOFError, struct.error, Image.DecompressionBombError, Image.DecompressionBombWarning) as error:
         raise WorkspaceError(422, "Could not read this still image. Choose a valid PNG, JPEG, or WebP.") from error
     with clean:
+        if fit:
+            clean.thumbnail(fit, Image.Resampling.LANCZOS)
         width, height = clean.size
         full = directory / "image.webp"
         write_image(clean, full, thumb=False, lossless=lossless)

@@ -284,7 +284,7 @@ class PlanningApiTests(unittest.TestCase):
             project, _ = self.project(app)
             plan = self.approve(app, project, self.generate(app, project))
         with Workspace(self.root).connect() as db:
-            for table in ("board_shots", "studio_images", "cast_library", "story_plan_versions"):
+            for table in ("motion_jobs", "motion_assets", "motion_sequences", "board_shots", "studio_images", "cast_library", "story_plan_versions"):
                 db.execute(f"DROP TABLE {table}")
             db.execute("PRAGMA user_version = 2")
         with self.client() as app:

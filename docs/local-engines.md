@@ -10,4 +10,4 @@
 
 Runtime and model licenses are separate. Record source URL, exact revision or filename, model-specific license, disk size, and observed RAM/runtime before adding a checkpoint or voice to a supported list. Do not install an image model or switch to GPU acceleration based on the adapter name alone.
 
-Phase 3 uses a built-in, rule-based planner and imports local stills; it does not invoke a model. No voice, model download, or media provider adapter is shipped. A full installation guide for each supported model belongs with its tested adapter, not with this detection-only release.
+Koma Studio uses a built-in rule-based planner and imports local stills. Milestone 1 animates those kinds of prepared layers without inference. It invokes your local FFmpeg/FFprobe installation only for MP4 export; see the [setup instructions](../README.md#ffmpeg-setup-for-export). No voice engine, model download, or external media provider is shipped.

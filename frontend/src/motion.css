@@ -1,0 +1,138 @@
+/* Animation desk: layer/keyframe controls share the existing workspace shell. */
+.back-link { display:inline-flex; align-items:center; gap:6px; margin-bottom:10px; color:var(--muted); font-size:12px; }
+.back-link:hover { color:var(--mint); }
+.motion-editor > .page-heading { margin-bottom:12px; }
+.motion-library-hero { overflow:hidden; min-height:284px; display:grid; grid-template-columns:minmax(0,1.5fr) minmax(175px,.8fr); background:radial-gradient(ellipse at 89% 20%,#223c49,transparent 63%),#151d29; border-color:#35525a; }
+.motion-library-intro { align-self:center; padding:clamp(20px,5vw,62px); }
+.motion-library-intro h2 { font-family:'Fraunces Variable',Georgia,serif; font-weight:630; font-size:clamp(34px,5vw,66px); letter-spacing:-.055em; line-height:1.1; margin:12px 0 8px; }
+.motion-library-intro p { max-width:44ch; color:#bdc8d5; font-size:14px; }
+.motion-library-hero > img { width:100%; height:100%; max-height:358px; object-fit:cover; object-position:center 55%; mask-image:linear-gradient(90deg,transparent,black 24%); }
+.motion-hero-facts,.motion-export-spec { display:flex; flex-wrap:wrap; gap:8px 15px; align-items:center; color:#b4cbd1; font-size:12px; margin:14px 0; }
+.motion-hero-facts > span { border-left:1px solid #4a6570; padding-left:9px; }
+.motion-library-drafts { padding:17px; margin-top:18px; }
+.motion-new { display:flex; gap:9px; align-items:end; flex-wrap:wrap; margin:10px 0 14px; }
+.motion-new .field { flex:1 1 220px; max-width:370px; }
+.motion-library-row { display:grid; grid-template-columns:auto minmax(0,1fr) auto auto; gap:10px; align-items:center; border-top:1px solid var(--stroke); padding:11px 0; color:#d1dde8; }
+.motion-library-row > span { font-size:11px; color:var(--muted); }
+.motion-library-row > strong { overflow-wrap:anywhere; }
+.motion-demo { margin:0 0 10px; padding:8px 10px; border:1px solid #524438; border-radius:8px; background:#25232a; color:#e3b784; font-size:12px; }
+.motion-banner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; padding:9px 14px; background:linear-gradient(135deg,#273d42,#171f2a 61%,#252e44); border:1px solid #3c565d; border-radius:var(--radius); }
+.motion-banner-name { display:flex; align-items:center; gap:10px; }
+.motion-banner-name span { margin:0; color:#b2e7d3; background:#27433c; border-color:#4c7062; }
+.motion-banner-name small { display:block; font-size:10px; color:#b3d3cf; text-transform:uppercase; letter-spacing:.11em; font-weight:700; }
+.motion-banner-name strong { font-size:18px; font-weight:740; color:#edf5f6; }
+.motion-facts { display:grid; grid-template-columns:repeat(4,minmax(73px,auto)); gap:13px; }
+.motion-facts > div { border-left:1px solid #45606a; padding-left:10px; }
+.motion-facts small { display:block; color:#a9bdcc; font-size:10px; }
+.motion-facts strong { display:block; font-size:19px; line-height:1.2; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.motion-facts em { font-size:11px; font-style:normal; color:#a9bdcc; }
+.motion-proof { margin:10px 0 0; display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; min-height:38px; padding:6px 10px; color:#bcdfd3; font-size:12px; background:#1b2c30; border:1px solid #395b56; border-radius:8px; }
+.motion-proof > svg { flex-shrink:0; color:#a4dfbe; }
+.motion-proof .text-button { display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.motion-desk { display:grid; grid-template-columns:minmax(171px,.74fr) minmax(265px,1.7fr) minmax(242px,1.07fr); gap:10px; align-items:start; margin-top:12px; }
+.motion-side { display:grid; gap:10px; min-width:0; }
+.motion-shots,.motion-layers,.motion-inspector,.motion-stage { min-width:0; padding:10px; }
+.motion-panel-heading { display:flex; justify-content:space-between; align-items:center; gap:6px; margin:0 0 7px; }
+.motion-panel-heading h2 { font-size:14px; font-weight:760; }
+.motion-panel-heading small { color:#9bb4ca; font-size:10px; opacity:.9; }
+.motion-icon,.motion-order button { display:inline-grid; place-items:center; min-width:29px; min-height:28px; border-radius:6px; color:#bdcfe0; border:1px solid #39475a; background:#202735; flex-shrink:0; }
+.motion-icon:hover,.motion-order button:hover { color:#d6f5e7; border-color:#648e83; }
+.motion-order button:disabled,.motion-icon:disabled { opacity:.4; cursor:default; }
+.motion-shot-item { display:flex; gap:8px; align-items:center; width:100%; text-align:left; padding:8px 7px; margin:4px 0; border:1px solid #344154; background:#192230; border-radius:7px; }
+.motion-shot-item[aria-pressed=true] { background:#203231; border-color:#6aab94; }
+.motion-shot-item b { font-size:11px; color:#aec0ce; font-variant-numeric:tabular-nums; }
+.motion-shot-item span { min-width:0; }
+.motion-shot-item strong { color:#e8eef3; font-size:11px; line-height:1.28; overflow-wrap:anywhere; display:block; }
+.motion-shot-item small { display:block; color:#afc0d0; font-size:10px; }
+.motion-order,.motion-key-actions,.motion-job-actions { display:flex; gap:5px; flex-wrap:wrap; align-items:center; }
+.motion-order { margin-top:7px; }
+.motion-layer-list { display:grid; gap:2px; max-height:140px; overflow:auto; }
+.motion-layer-item { min-height:27px; display:flex; align-items:center; gap:5px; min-width:0; padding:3px 6px; border:1px solid transparent; color:#b3c4d4; text-align:left; border-radius:5px; }
+.motion-layer-item svg { flex-shrink:0; }
+.motion-layer-item > span { flex:1; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.motion-layer-item[aria-pressed=true] { background:#283d38; border-color:#4f7a6d; color:#c9f3e0; }
+.motion-layer-item:hover { color:#e9fbf5; background:#263439; }
+.motion-import { width:100%; justify-content:center; margin-top:8px; }
+.motion-extra { border-top:1px solid var(--stroke); padding-top:6px; margin-top:6px; min-width:0; }
+.motion-extra summary { font-size:11px; color:#a8c8c3; cursor:pointer; margin-bottom:5px; }
+.motion-use-asset { display:flex; gap:5px; align-items:center; }
+.motion-use-asset select,.motion-rate select { padding:4px; color:#c8d4df; background:#18212e; border:1px solid #3b4b60; border-radius:5px; min-width:0; font-size:11px; }
+.motion-use-asset select { width:100%; }
+.motion-stage { padding:0; overflow:hidden; }
+.motion-stage header { min-height:32px; display:flex; gap:6px; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:6px 10px; font-size:10px; color:#adbecf; }
+.motion-stage header span { display:inline-flex; align-items:center; gap:5px; }
+.motion-stage .motion-lock { color:#a7dfbe; }
+.motion-screen { display:grid; place-items:center; position:relative; background:radial-gradient(ellipse,#27354a 0,#111824 75%); border-block:1px solid #313e50; min-height:240px; padding:11px; }
+.motion-canvas { position:relative; width:min(100%,clamp(155px,22vh,238px)); aspect-ratio:9/16; background:#09101c; border:1px solid #40566c; border-radius:5px; overflow:hidden; box-shadow:0 9px 25px #08101ac2; }
+.motion-canvas canvas { display:block; width:100%; height:100%; }
+.motion-screen-message { position:absolute; inset:0; display:grid; place-items:center; text-align:center; padding:16px; color:#d0dfed; background:#0c14218c; font-size:13px; }
+.motion-inspector { padding:0; }
+.motion-tabs { display:flex; align-items:center; gap:3px; border-bottom:1px solid var(--stroke); padding:5px; }
+.motion-tabs button { flex:1 1 0; font-size:12px; border-radius:5px; padding:6px; color:#aebdd1; }
+.motion-tabs button[aria-pressed=true] { background:#2b433d; color:#d1f6e4; }
+.motion-inspector-body { border:0; min-width:0; display:grid; gap:9px; padding:11px; }
+.motion-inspector-body:disabled { opacity:.8; }
+.motion-inspector-heading { display:flex; align-items:center; justify-content:space-between; gap:6px; }
+.motion-inspector-heading div { min-width:0; }
+.motion-inspector-heading small { display:block; color:#99aebf; font-size:10px; text-transform:uppercase; letter-spacing:.09em; }
+.motion-inspector-heading h2 { font-size:16px; font-weight:740; overflow-wrap:anywhere; }
+.motion-values { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.motion-field { min-width:0; }
+.motion-field span { font-size:11px; }
+.motion-field input:not([type="file"]),.motion-field select { min-height:32px; width:100%; padding:5px 7px; font-size:12px; }
+.motion-extra .motion-field,.motion-extra .motion-key-actions { margin-bottom:7px; }
+.motion-visible,.motion-help { color:#aebed0; font-size:11.5px; line-height:1.45; }
+.motion-locked-hint { display:flex; align-items:start; gap:7px; color:#b6e7d3; background:#1b3031; border:1px solid #3a6057; border-radius:6px; padding:8px; }
+.motion-locked-hint svg { flex-shrink:0; }
+.motion-key-tools { display:grid; gap:6px; border-top:1px solid var(--stroke); padding-top:8px; }
+.motion-key-row { display:flex; align-items:center; justify-content:space-between; font-size:11px; color:#b7c8d6; }
+.motion-key-row > span:first-child { display:flex; gap:4px; align-items:center; }
+.motion-timeline { grid-column:1/-1; padding:9px 11px; min-width:0; }
+.motion-transport,.motion-controls { display:flex; align-items:center; gap:6px; }
+.motion-transport { justify-content:space-between; flex-wrap:wrap; padding:7px 10px; }
+.motion-play { border:1px solid #6ea28d; border-radius:6px; color:#0d2e24; background:#a8e9cc; display:grid; place-items:center; min-height:32px; min-width:38px; }
+.motion-play:hover { background:#c5f6dc; }
+.motion-timecode { display:grid; margin-left:3px; }
+.motion-timecode output { color:#e2ebf2; font:700 15px/1.2 ui-monospace,Consolas,monospace; }
+.motion-timecode small,.motion-rate { font-size:10px; color:#a8bacb; }
+.motion-ruler { display:flex; justify-content:space-between; font:11px/1.7 ui-monospace,Consolas,monospace; color:#a8b9c9; }
+.motion-strip { display:flex; position:relative; gap:3px; min-width:0; }
+.motion-clip { flex:1 1 0; min-width:0; padding:6px 7px; border:1px solid #566477; border-radius:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:left; font-size:11px; color:#dce7f2; background:#28394e; }
+.motion-clip span { font:10px ui-monospace,Consolas,monospace; margin-right:3px; }
+.motion-clip.clip-1 { background:#2c3c38; }
+.motion-clip.clip-2 { background:#38334f; }
+.motion-clip[aria-current=true] { border-color:#9bd7bc; }
+.motion-position { position:absolute; inset-block:-2px; width:1px; background:#c3ffe5; pointer-events:none; box-shadow:0 0 3px #7ae3b97d; z-index:1; }
+.motion-scrub { width:100%; accent-color:#a7ebcc; height:16px; }
+.motion-track-head { border-top:1px solid var(--stroke); display:flex; align-items:center; justify-content:space-between; gap:8px; padding:5px 0; color:#aec5d3; font-size:11px; }
+.motion-track-head span:first-child { display:inline-flex; align-items:center; gap:5px; }
+.motion-tracks { max-height:119px; overflow:auto; padding-right:7px; }
+.motion-track { display:grid; grid-template-columns:minmax(100px,20%) minmax(0,1fr); align-items:center; gap:8px; min-height:24px; border-top:1px solid #273140; }
+.motion-track > button { display:flex; align-items:center; gap:4px; padding:3px 2px; min-width:0; text-align:left; font-size:10px; color:#b4c2d4; }
+.motion-track > button span { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.motion-track > button svg { flex-shrink:0; }
+.motion-track.track-selected > button { color:#c3efd6; }
+.motion-keybar { position:relative; min-height:18px; border-radius:3px; background:repeating-linear-gradient(90deg,#202a39 0,#202a39 calc(10% - 1px),#303b4a calc(10% - 1px),#303b4a 10%); margin-right:5px; }
+.motion-key-marker { color:#c5b6f1; position:absolute; display:grid; place-items:center; height:18px; width:14px; transform:translateX(-50%); }
+.motion-key-marker:hover,.motion-key-marker:focus-visible { color:#fff; z-index:2; }
+.motion-locked-track { color:#aadbc4; font-size:10px; padding-left:6px; }
+.motion-export { margin:auto; width:min(550px,calc(100% - 22px)); max-height:88dvh; overflow:auto; padding:16px; color:#e8f0f6; background:#181f2b; border:1px solid #45566b; border-radius:11px; box-shadow:0 20px 80px #080c16; }
+.motion-export::backdrop { background:#090d16bd; }
+.motion-export-top { display:flex; align-items:center; gap:9px; }
+.motion-export-top h2 { font-size:22px; font-weight:780; }
+.motion-export-top button { margin-left:auto; }
+.motion-export-top .eyebrow { font-size:10px; }
+.motion-export-spec { margin:8px 0; }
+.motion-export-controls { display:flex; flex-wrap:wrap; align-items:end; gap:8px; margin:10px 0; }
+.motion-export-controls .field { flex:1 1 160px; }
+.motion-job { padding:8px; border:1px solid #36465a; background:#192431; border-radius:7px; margin-top:6px; }
+.motion-job > div:first-child { display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
+.motion-job strong { min-width:0; font-size:11px; overflow-wrap:anywhere; }
+.motion-job p,.motion-output-path { color:#acbece; font-size:11px; margin:4px 0; overflow-wrap:anywhere; }
+.motion-output-path { display:block; }
+.motion-progress { display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
+.motion-progress progress { flex:1 1 120px; accent-color:#9ae4c5; }
+.motion-export-player video { width:100%; max-height:47vh; margin:6px auto; background:#121926; }
+@media(max-width:1120px) { .motion-desk { grid-template-columns:minmax(150px,.8fr) minmax(202px,1.2fr) minmax(215px,1fr); } .motion-facts strong {font-size:16px;} }
+@media(max-width:910px) { .motion-desk { grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); } .motion-inspector { grid-column:1/-1; } .motion-timeline { grid-row:2; } .motion-inspector-body { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } .motion-inspector-heading,.motion-extra { grid-column:1/-1; } }
+@media(max-width:560px) { .motion-desk { grid-template-columns:minmax(0,1fr); } .motion-stage { grid-row:1; } .motion-canvas { width:min(100%,180px); } .motion-side { grid-template-columns:repeat(2,minmax(0,1fr)); } .motion-facts { grid-template-columns:repeat(2,minmax(0,1fr)); width:100%; } .motion-proof .text-button { margin-left:23px; } .motion-library-hero { grid-template-columns:minmax(0,1fr) minmax(85px,.5fr); } .motion-library-intro{padding:15px;} .motion-library-row { grid-template-columns:auto minmax(0,1fr) auto; } .motion-library-row > svg:last-child { display:none; } .motion-track { grid-template-columns:100px minmax(0,1fr); } }
